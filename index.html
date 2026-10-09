@@ -315,6 +315,8 @@ main.wide aside.list{display:none}
 .gate[data-st="wait"] [data-for="wait"],.gate[data-st="login"] [data-for="login"],.gate[data-st="denied"] [data-for="denied"],.gate[data-st="error"] [data-for="error"]{display:block}
 .gate p{margin:0 0 16px;font-size:13.5px;line-height:1.55}
 .gate p.sm{font-size:12px;color:var(--ink-3);margin-top:-6px}
+.gate p.g-note{color:#F0A39C;margin:-4px 0 14px}
+.gate p.g-note:empty{display:none}
 .gate p b{color:#fff;font-weight:500;word-break:break-all}
 .gbtn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:10px;padding:11px 16px;background:#fff;color:var(--navy);font-weight:500;cursor:pointer;transition:transform .1s,box-shadow .15s}
 .gbtn:hover{box-shadow:0 0 0 3px rgba(116,195,183,.35)}
@@ -359,6 +361,7 @@ main.wide aside.list{display:none}
     <div class="g-box" data-for="wait"><div class="g-spin"></div><p style="margin:0">Conectando…</p></div>
     <div class="g-box" data-for="login">
       <p>Ingresá con tu cuenta de Google.<br>Solo pueden entrar los mails autorizados.</p>
+      <p class="sm g-note" id="gNote"></p>
       <button class="gbtn" id="gLogin" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Continuar con Google</button>
     </div>
     <div class="g-box" data-for="denied">
@@ -1027,18 +1030,22 @@ function showNum(n,dec){ if(n===null||n===undefined||n==='') return ''; return n
 const KEY='htex-costeo-un3-v1';
 let state;
 function load(){
-  try{ const raw=localStorage.getItem(KEY); if(raw){ const s=JSON.parse(raw); if(s&&Array.isArray(s.rps)) return s; } }catch(e){}
-  return {rps:JSON.parse(JSON.stringify(SEED)), sel:null};
+  let ui={};
+  try{ const raw=localStorage.getItem(KEY); if(raw){ const s=JSON.parse(raw); if(s&&Array.isArray(s.rps)&&!CLOUD) return s; if(s) ui={sel:s.sel||null,sec:s.sec}; } }catch(e){}
+  return {rps:JSON.parse(JSON.stringify(SEED)), sel:ui.sel||null, sec:ui.sec};
 }
 /* Nube (Supabase). Con los dos valores vacíos la app funciona como antes, solo en este navegador. */
 const SUPABASE_URL = 'https://qgcaglnyqyvdllxrxxqa.supabase.co';       // ej.: https://abcdefgh.supabase.co
 const SUPABASE_ANON_KEY = 'sb_publishable_7ByltHkNIkMJMiJ5f1XIGw__4kW16YJ';  // clave pública "anon" / "publishable" del proyecto
+const CLOUD = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
+// En modo nube los RP no se guardan en el navegador (computadoras compartidas)
+function persist(){ try{ localStorage.setItem(KEY,JSON.stringify(CLOUD?{sel:state.sel,sec:state.sec}:state)); }catch(e){} }
 const cloud = { sb:null, on:false, email:'', synced:new Map(), pushing:false, again:false, pushT:null, retryT:null, pendingRender:false };
 function save(){
-  try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){}
+  persist();
   if(cloud.on){ clearTimeout(cloud.pushT); cloud.pushT=setTimeout(pushChanges,300); }
 }
-state=load();
+state=load(); persist();
 const sortKey = r => (r.fechaCreacion||r.fecha||'0000');
 function sorted(){ return [...state.rps].sort((a,b)=>sortKey(b).localeCompare(sortKey(a)) || b.hoja.localeCompare(a.hoja)); }
 if(!state.sel || !state.rps.find(r=>r.id===state.sel)) state.sel = sorted()[0]?.id || null;
@@ -1659,7 +1666,7 @@ function removeRemote(id){
 }
 function editing(){ const a=document.activeElement; return !!a && a.matches('input,textarea,select') && a.id!=='q'; }
 function remoteRender(){
-  try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){}
+  persist();
   if(editing()){ cloud.pendingRender=true; return; }   // no pisar lo que se está escribiendo
   cloud.pendingRender=false;
   if(!state.sel || !cur()) state.sel=sorted()[0]?.id || null;
@@ -1710,7 +1717,11 @@ async function enter(session){
   document.getElementById('gLogo').src=document.querySelector('.sp-htex img').src;
   if(!SUPABASE_URL || !SUPABASE_ANON_KEY){ g.remove(); setSync('local'); return; }
   if(!window.supabase){ gate('error','No se pudo cargar la librería de conexión. Revisá la conexión a internet.'); return; }
-  cloud.sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+  cloud.sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{storage:window.sessionStorage,persistSession:true}});
+  // Google/Supabase rechazó el ingreso (mail no autorizado): viene un error en la dirección
+  const qs=new URLSearchParams(location.search+'&'+location.hash.replace(/^#/,''));
+  const authErr=qs.get('error_description')||qs.get('error');
+  if(authErr){ history.replaceState(null,'',location.origin+location.pathname); document.getElementById('gNote').textContent='Esa cuenta de Google no está autorizada para usar esta aplicación.'; console.warn(authErr); }
   document.getElementById('gLogin').addEventListener('click',()=>cloud.sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname,queryParams:{prompt:'select_account'}}}));
   document.getElementById('gOther').addEventListener('click',async()=>{ await cloud.sb.auth.signOut(); gate('login'); });
   document.getElementById('btnLogout').addEventListener('click',async()=>{
