@@ -483,6 +483,42 @@ table.mpt tr.on td:first-child{box-shadow:inset 3px 0 0 var(--navy)}
 .mod b{font-size:17px}
 .mod small{font-size:12.5px;color:var(--ink-3);line-height:1.5}
 .mod .go{margin-top:auto;font-size:12px;font-weight:500;color:var(--teal)}
+
+/* ================= Colores Visión (2026-11) =================
+   Mismo orden que el estilo formal; el color va en acentos: navy de base, teal para
+   lo activo y los títulos, grises verdosos de fondo. */
+:root{--bg:#F1F5F4;--sel:#E6F3F1;--soft:#F6F8F7;--line:#DCE3E1}
+header.top{border-bottom:3px solid var(--teal)}
+.mainnav button.on{border-bottom-color:var(--teal)}
+.mainnav button.on svg{color:var(--teal)}
+.mainnav button.on em{background:var(--teal)}
+.sects button:hover{color:var(--teal)}
+.sects button.on{border-bottom-color:var(--teal);color:var(--navy)}
+.eyebrow{color:var(--teal)}
+.card h3{border-left:3px solid var(--teal);padding-left:15px}
+.fs .fs-t,.mdl h5{color:var(--teal)}
+.btn:hover{border-color:var(--teal);color:var(--teal)}
+.btn.primary:hover{color:#fff}
+.rp-item.on{background:var(--sel);border-left-color:var(--teal)}
+table.mpt tr.on td{background:var(--sel)}
+table.mpt tr.on td:first-child{box-shadow:inset 3px 0 0 var(--teal)}
+table.st th,table.gbt th,table.mpt th{background:var(--soft)}
+table.st tr.hl td{background:var(--sel)}
+table.st tr.total td{background:var(--soft)}
+table.gbt tbody tr:hover,table.mpt.click tbody tr:hover{background:var(--soft)}
+table.gbt tfoot td,table.gbt tfoot tr+tr td{background:var(--sel)}
+/* Indicadores: los de resultado en navy Visión con línea teal */
+.kpi{border-top:3px solid var(--teal)}
+.kpi.dark{background:var(--navy);color:#fff;border-color:var(--navy);border-top-color:var(--teal-2)}
+.kpi.dark .v{color:#fff}
+.kpi.dark .l,.kpi.dark .s{color:#A9B6BF}
+.kpi.dark .ib{border-color:rgba(255,255,255,.3);color:#C9D2D8}
+.ib:hover,.ib:focus-visible,.ib.on,.kpi.dark .ib:hover,.kpi.dark .ib.on,table.st tr.total .ib:hover,table.st tr.total .ib.on{background:var(--teal);border-color:var(--teal)}
+.in input:focus,.pf input:focus,.pf textarea:focus,.fr input:focus,.fr select:focus{border-color:var(--teal)}
+.f .calc,.pf .calc,.fr .calc{background:var(--soft)}
+/* Inicio */
+.mod .ico{color:var(--teal)}
+.mod:hover{border-color:var(--teal)}
 </style>
 </head>
 <body>
