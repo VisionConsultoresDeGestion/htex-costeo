@@ -659,7 +659,7 @@ table.mpt.ed select:focus,table.mpt.ed input:focus{border-color:var(--teal);back
         <div id="mpRP" class="hide">
           <div class="mp-grid">
             <div class="card">
-              <div class="mp-bar"><input class="search" id="mpRQ" type="search" placeholder="Buscar RP, cliente…" aria-label="Buscar RP"></div>
+              <div class="mp-bar"><input class="search" id="mpRQ" type="search" placeholder="Buscar RP, cliente…" aria-label="Buscar RP"><button class="btn primary sm" id="mpBtnNewRP" type="button" style="margin-left:auto">＋ Nuevo RP</button></div>
               <div class="sum-wrap"><table class="mpt click" id="mpRPs"></table></div>
             </div>
             <div class="card" id="mpEd"></div>
@@ -1712,12 +1712,19 @@ document.getElementById('fImp').addEventListener('change',async e=>{
 /* ================== Acciones ================== */
 function uid(){ return 'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
 function today(){ const d=new Date(); return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10); }
-document.getElementById('btnNew').addEventListener('click',()=>{
+// Crea un RP con los parámetros del último RP. Se usa desde Costeo y desde Materia prima.
+function crearRP(datos){
   const base=sorted()[0]; const keep=['pctNacionalizacion','precioMaxSaurer','pctRegalias','precioMotorNuevo','pctGananciaHTEX','usdOficial','usdBlue','eurOficial','pctRecargo','pctInflacionMora','alicuotaComisiones','pctIIBB','pctGanancias','motoresMes','variableEurPorMotor','sueldoFijoARS','sueldoVariableEUR'];
   const n={id:uid(),hoja:'Nuevo RP',titulo:'RP # ',fecha:today(),fechaCreacion:today(),facturaAsociada:'',mp:[],impPais:0,interesesSufridos:0,facturarManual:null,precioVentaAnotar:null,cantidadMotores:0,cliente:'',presu:PRESU_DEF()};
   const defs={pctNacionalizacion:.5,precioMaxSaurer:240,pctRegalias:.25,precioMotorNuevo:650,pctGananciaHTEX:.3,usdOficial:0,usdBlue:0,eurOficial:0,pctRecargo:.02,pctInflacionMora:0,alicuotaComisiones:.0347,pctIIBB:.03,pctGanancias:.3,motoresMes:0,variableEurPorMotor:12.5,sueldoFijoARS:0,sueldoVariableEUR:0};
   for(const k of keep) n[k]= base&&base[k]!==undefined&&base[k]!==null ? base[k] : defs[k];
-  state.rps.push(n); state.sel=n.id; setSec('costeo'); save(); setTab('rp'); renderAll();
+  Object.assign(n,datos||{});
+  state.rps.push(n); state.sel=n.id; state.mpSel=n.id;
+  return {n,base};
+}
+document.getElementById('btnNew').addEventListener('click',()=>{
+  const {base}=crearRP();
+  setSec('costeo'); save(); setTab('rp'); renderAll();
   toast(base?'Nuevo RP con los parámetros de '+base.hoja:'Nuevo RP creado');
   setTimeout(()=>document.getElementById('f_hoja').select(),50);
 });
@@ -2009,6 +2016,21 @@ function openIns(id){
   });
 }
 document.getElementById('mpBtnNew').addEventListener('click',openNewIns);
+function openNewRP(){
+  const bg=modal('Nuevo RP',
+    `<div class="fr"><label for="m_hoja">Hoja / identificador</label><input id="m_hoja" placeholder="Ej.: 1026 Tecotex 26_31"></div>
+     <div class="fr"><label for="m_cli">Cliente</label><input id="m_cli"></div>
+     <div class="fr"><label for="m_cant">cantidad motores</label><input id="m_cant" inputmode="decimal" placeholder="0"></div>`, FOOT('Crear RP'));
+  bg.querySelector('[data-ok]').addEventListener('click',()=>{
+    const hoja=mVal('m_hoja').trim(), cant=parseNum(mVal('m_cant'));
+    if(!hoja) return mErr('Falta la hoja / identificador.');
+    if(cant!==null && cant<0) return mErr('La cantidad de motores no puede ser negativa.');
+    crearRP({hoja,cliente:mVal('m_cli').trim(),cantidadMotores:cant||0});
+    state.mpSec='rp'; document.getElementById('mpRQ').value='';
+    afterMP('RP creado: '+hoja);
+  });
+}
+document.getElementById('mpBtnNewRP').addEventListener('click',openNewRP);
 document.getElementById('mpBtnPrice').addEventListener('click',()=>openPrice());
 document.getElementById('mpBtnMov').addEventListener('click',()=>openMov());
 
