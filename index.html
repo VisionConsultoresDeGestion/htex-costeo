@@ -46,7 +46,7 @@ button,input,select{font:inherit;color:inherit}
 @media (prefers-reduced-motion:reduce){#splash *{animation-duration:.01s!important;animation-delay:0s!important}.sp-vision{display:none}}
 
 /* ---------- Shell ---------- */
-.app{display:grid;grid-template-rows:auto 1fr auto;min-height:100vh}
+.app{display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:minmax(0,1fr);min-height:100vh}
 header.top{background:var(--navy);color:#fff;display:flex;align-items:center;gap:18px;padding:12px 24px}
 .topwrap{position:sticky;top:0;z-index:20}
 .mainnav{display:flex;gap:4px;background:#fff;border-bottom:1px solid var(--line);padding:0 24px;box-shadow:0 2px 6px rgba(17,29,41,.06)}
@@ -337,6 +337,71 @@ main.wide aside.list{display:none}
 .who{max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media (max-width:820px){.who{display:none}}
 @media print{.gate,.session{display:none!important}}
+
+/* ---------- Materia prima ---------- */
+.mp-sub{color:var(--ink-3);font-size:12.5px}
+.mp-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid var(--line)}
+.mp-bar .search{flex:0 1 280px}
+.mp-bar label.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-2);cursor:pointer}
+.mp-bar select{border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--bg);outline:none;max-width:100%}
+table.mpt{width:100%;border-collapse:collapse;font-size:12.5px}
+table.mpt th{position:sticky;top:0;background:#FAFAFA;font-size:10.5px;font-weight:600;color:var(--ink-3);letter-spacing:.03em;text-transform:uppercase;text-align:right;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.mpt td{padding:8px 12px;border-bottom:1px solid #F0F1F2;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.mpt th.l,table.mpt td.l{text-align:left}
+table.mpt td.w{white-space:normal;min-width:180px}
+table.mpt td.c{color:var(--ink-3)}
+table.mpt td.strong{font-weight:600;color:var(--navy)}
+table.mpt.click tbody tr{cursor:pointer}
+table.mpt.click tbody tr:hover{background:var(--teal-soft)}
+table.mpt tr.on td{background:var(--teal-soft)}
+table.mpt tr.on td:first-child{box-shadow:inset 3px 0 0 var(--teal)}
+table.mpt tfoot td{font-weight:600;background:#FAFBFB;border-top:1px solid var(--line)}
+table.mpt .neg{color:var(--neg)}
+.mp-empty{padding:40px 20px;text-align:center;color:var(--ink-3);font-size:13px}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;border-radius:20px;padding:2px 9px;letter-spacing:.02em}
+.badge.ok{background:var(--teal-soft);color:var(--pos)}
+.badge.low{background:#FFF1D6;color:#8A5A00}
+.badge.out{background:#FDE7E5;color:var(--neg)}
+.mp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:18px;align-items:start}
+.mp-grid>*{min-width:0}
+.mp-grid>.card+.card{margin-top:0}
+.mp-head{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;gap:16px;flex-wrap:wrap;align-items:baseline}
+.mp-head b{font-size:17px;font-weight:600;color:var(--navy)}
+.mp-head span{font-size:12px;color:var(--ink-3)}
+table.mpt.ed td{padding:6px 10px}
+table.mpt.ed select,table.mpt.ed input{border:1px solid var(--input-line);background:var(--input);border-radius:7px;padding:6px 8px;outline:none;font-size:12.5px;width:100%;min-width:0}
+table.mpt.ed input{text-align:right;width:90px}
+table.mpt.ed select:focus,table.mpt.ed input:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(83,166,154,.15)}
+.xbtn{border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:14px;padding:4px 6px;border-radius:6px}
+.xbtn:hover{color:var(--neg);background:#FDE7E5}
+.mp-add{padding:10px 18px;border-bottom:1px solid var(--line)}
+.mp-sum{display:grid;grid-template-columns:1fr auto;gap:6px 0;padding:14px 18px;font-size:13px}
+.mp-sum .l{color:var(--ink-2)}
+.mp-sum .l em{font-style:normal;color:var(--ink-3);font-size:11.5px}
+.mp-sum .v{text-align:right;font-variant-numeric:tabular-nums;padding-left:16px}
+.mp-sum .tot{font-weight:600;color:var(--navy);border-top:1px solid var(--line);padding-top:8px}
+.mp-warn{margin:12px 18px 0;background:#FFF1D6;color:#8A5A00;border-radius:8px;padding:8px 12px;font-size:12.5px}
+.mp-warn:empty{display:none}
+/* Ventanas */
+.mbg{position:fixed;inset:0;z-index:70;background:rgba(17,29,41,.45);display:grid;place-items:center;padding:16px}
+.mdl{background:#fff;border-radius:14px;width:min(520px,100%);max-height:calc(100vh - 32px);display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(17,29,41,.3)}
+.mdl.wide{width:min(820px,100%)}
+.mdl .mh{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.mdl .mh b{font-size:15px;font-weight:600}
+.mdl .mh .xbtn{margin-left:auto}
+.mdl .mb{padding:14px 20px;overflow:auto}
+.mdl .mf{display:flex;gap:8px;justify-content:flex-end;padding:12px 20px;border-top:1px solid var(--line);background:#FAFAFA;border-radius:0 0 14px 14px}
+.mdl .mf .left{margin-right:auto}
+.fr{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;padding:5px 0}
+.fr>label{font-size:12.5px;color:var(--ink-2)}
+.fr input,.fr select{width:100%;border:1px solid var(--input-line);background:var(--input);border-radius:7px;padding:7px 9px;outline:none;font-size:13px;min-width:0}
+.fr input:focus,.fr select:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(83,166,154,.15)}
+.fr .calc{font-size:13px;padding:7px 9px;background:#F6F7F7;border-radius:7px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.mdl h5{margin:16px 0 6px;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.mdl .err{color:var(--neg);font-size:12.5px;min-height:18px;margin-top:6px}
+@media (max-width:1180px){.mp-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:820px){.fr{grid-template-columns:1fr;gap:4px}.mp-bar .search{flex:1 1 100%}.mainnav{overflow-x:auto}.mainnav button{flex:1 0 auto}.mp-head{gap:6px 12px}}
+@media print{.mbg{display:none!important}}
 </style>
 </head>
 <body>
@@ -397,6 +462,7 @@ main.wide aside.list{display:none}
   <nav class="mainnav" aria-label="Secciones">
     <button id="tabRP" class="on" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg><span><b>Fichas de RP</b><small>Costeo · Presupuesto</small></span><em id="navCount"></em></button>
     <button id="tabGB" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/><path d="M15 8h4v4"/></svg><span><b>Ganancia bruta por RP</b><small>Tabla general 2026</small></span></button>
+    <button id="tabMP" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg><span><b>Materia prima</b><small>Insumos · precios · stock</small></span><em id="mpCount"></em></button>
   </nav>
   </div>
 
@@ -541,6 +607,61 @@ main.wide aside.list{display:none}
           <div class="actions"><button class="btn" id="btnBak" type="button" title="Descarga todos los RP en un archivo para guardar o pasar a otro navegador">⭳ Respaldo</button><button class="btn" id="btnImp" type="button" title="Carga los RP de un archivo de respaldo">⭱ Importar respaldo</button><input type="file" id="fImp" accept=".json,application/json" hidden><button class="btn" id="btnCSV" type="button">⭳ Exportar CSV</button></div>
         </div>
         <div class="card"><div class="sum-wrap"><table class="gbt" id="tGBall"></table></div></div>
+      </div>
+
+      <!-- ===== Vista Materia prima ===== -->
+      <div id="viewMP" class="hide">
+        <div class="rp-head">
+          <div class="t">
+            <div class="eyebrow">Materia prima</div>
+            <div style="font-size:24px;font-weight:600">Insumos, precios y stock</div>
+            <div class="mp-sub">Precios en USD. El stock baja solo con las materias primas aplicadas a cada RP.</div>
+          </div>
+          <div class="actions">
+            <button class="btn" id="mpBtnNew" type="button">＋ Nuevo insumo</button>
+            <button class="btn" id="mpBtnMov" type="button">⇅ Movimiento de stock</button>
+            <button class="btn primary" id="mpBtnPrice" type="button">＄ Cargar nuevo precio</button>
+          </div>
+        </div>
+        <div class="sects" id="mpSects" role="tablist">
+          <button type="button" data-mps="ins" class="on"><span class="n">1</span>Insumos y stock</button>
+          <button type="button" data-mps="rp"><span class="n">2</span>Materias primas por RP</button>
+          <button type="button" data-mps="hist"><span class="n">3</span>Historial de precios</button>
+        </div>
+
+        <div id="mpIns">
+          <div class="kpis k4">
+            <div class="kpi"><div class="l">Insumos</div><div class="v num" id="mpK1"></div><div class="s">en el listado</div></div>
+            <div class="kpi"><div class="l">Bajo stock mínimo</div><div class="v num" id="mpK2"></div><div class="s">con stock en el mínimo o menos</div></div>
+            <div class="kpi"><div class="l">Sin stock</div><div class="v num" id="mpK3"></div><div class="s">stock en cero o negativo</div></div>
+            <div class="kpi dark"><div class="l">Valor del stock<br>USD</div><div class="v num" id="mpK4"></div><div class="s">stock × precio vigente</div></div>
+          </div>
+          <div class="card">
+            <div class="mp-bar">
+              <input class="search" id="mpQ" type="search" placeholder="Buscar insumo o código…" aria-label="Buscar insumo">
+              <label class="chk"><input type="checkbox" id="mpLow"> Solo bajo mínimo</label>
+              <span class="count" style="margin-left:auto">Clic en un insumo para ver su detalle</span>
+            </div>
+            <div class="sum-wrap"><table class="mpt click" id="mpTable"></table></div>
+          </div>
+        </div>
+
+        <div id="mpRP" class="hide">
+          <div class="mp-grid">
+            <div class="card">
+              <div class="mp-bar"><input class="search" id="mpRQ" type="search" placeholder="Buscar RP, cliente…" aria-label="Buscar RP"><span class="count" style="margin-left:auto">Elegí un RP</span></div>
+              <div class="sum-wrap"><table class="mpt click" id="mpRPs"></table></div>
+            </div>
+            <div class="card" id="mpEd"></div>
+          </div>
+        </div>
+
+        <div id="mpHist" class="hide">
+          <div class="card">
+            <div class="mp-bar"><select id="mpHF" aria-label="Filtrar por insumo"></select></div>
+            <div class="sum-wrap"><table class="mpt" id="mpHT"></table></div>
+          </div>
+        </div>
       </div>
 
     </section>
@@ -974,12 +1095,15 @@ function calcular(d){
   r.sueldoTotal = r.sueldoFijoEUR + r.sueldoVariableEUR;                // N42
   r.sueldoPorMotor = v('motoresMes') ? r.sueldoTotal/v('motoresMes') : 0; // N43
   // Costos
-  r.repuestos = v('repuestos');                                         // B6/E6
-  r.nacionalizacion = v('repuestos')*v('pctNacionalizacion');           // B7/E7
+  // Repuestos: materias primas aplicadas al RP (USD, total del RP) → EUR oficial por motor
+  r.mpUSD = mpTotalUSD(d);
+  r.mpUSDxRM = v('cantidadMotores') ? r.mpUSD/v('cantidadMotores') : 0;
+  r.repuestos = v('eurOficial') ? r.mpUSDxRM*v('usdOficial')/v('eurOficial') : 0; // B6/E6
+  r.nacionalizacion = r.repuestos*v('pctNacionalizacion');              // B7/E7
   r.regalias = r.conversionBlueOficial ? v('precioMaxSaurer')*v('pctRegalias')/r.conversionBlueOficial : 0; // C8/E8
   r.impPais = v('impPais');                                             // B9/E9
   r.costoBruto = r.repuestos+r.nacionalizacion+r.regalias+r.impPais;    // E10
-  r.comisiones = v('alicuotaComisiones')*v('repuestos');                // B12
+  r.comisiones = v('alicuotaComisiones')*r.repuestos;                   // B12
   r.sueldoFer = r.sueldoPorMotor;                                       // B13
   r.costoTotal = r.costoBruto + r.comisiones + r.sueldoFer;             // E14
   // Resultado
@@ -1008,6 +1132,16 @@ function calcular(d){
   return r;
 }
 
+/* ================== Materia prima: precio vigente, stock y costo por RP ================== */
+// Precio vigente = el último cargado por fecha (a igual fecha, el último que se cargó)
+function precioVig(i){ return precioVigReg(i)?.precio ?? 0; }
+function precioVigReg(i){ let best=null; for(const p of i.precios||[]){ if(!best || (p.fecha||'')>(best.fecha||'') || ((p.fecha||'')===(best.fecha||'') && (p.ts||0)>=(best.ts||0))) best=p; } return best; }
+function insIdx(){ return new Map((state.insumos||[]).map(i=>[i.id,i])); }
+function mpTotalUSD(d, idx){ idx=idx||insIdx(); let s=0; for(const l of d.mp||[]){ const i=idx.get(l.ins); if(i) s+=(+l.cant||0)*precioVig(i); } return s; }
+function consumido(id){ let s=0; for(const r of state.rps) for(const l of r.mp||[]) if(l.ins===id) s+=(+l.cant||0); return s; }
+function stockDe(i){ return (i.movs||[]).reduce((s,m)=>s+(+m.cant||0),0) - consumido(i.id); }
+function estadoStock(i, st){ st = st===undefined ? stockDe(i) : st; if(st<=0) return 'out'; if(i.stockMin!==null && i.stockMin!==undefined && i.stockMin!=='' && st<=+i.stockMin) return 'low'; return 'ok'; }
+
 
 
 /* ================== Formato ================== */
@@ -1016,6 +1150,8 @@ const F2=nf(2), F0=nf(0);
 const eur = x => (x<0?'−':'')+'€ '+F2.format(Math.abs(x));
 const ars = x => (x<0?'−':'')+'$ '+F0.format(Math.abs(x));
 const usd = x => (x<0?'−':'')+'US$ '+F2.format(Math.abs(x));
+const usdP = x => (x<0?'−':'')+'US$ '+new Intl.NumberFormat('es-AR',{minimumFractionDigits:2,maximumFractionDigits:4}).format(Math.abs(x)); // precios unitarios chicos
+const qty = x => new Intl.NumberFormat('es-AR',{maximumFractionDigits:2}).format(x);
 const plain = x => (x<0?'−':'')+F2.format(Math.abs(x));
 const pct = x => nf(2).format(x*100).replace(/,00$/,'')+' %';
 const fdate = s => { if(!s) return '—'; const [y,m,d]=s.split('-'); return `${d}/${m}/${y}`; };
@@ -1035,8 +1171,8 @@ const KEY='htex-costeo-un3-v1';
 let state;
 function load(){
   let ui={};
-  try{ const raw=localStorage.getItem(KEY); if(raw){ const s=JSON.parse(raw); if(s&&Array.isArray(s.rps)&&!CLOUD) return s; if(s) ui={sel:s.sel||null,sec:s.sec}; } }catch(e){}
-  return {rps:JSON.parse(JSON.stringify(SEED)), sel:ui.sel||null, sec:ui.sec};
+  try{ const raw=localStorage.getItem(KEY); if(raw){ const s=JSON.parse(raw); if(s&&Array.isArray(s.rps)&&!CLOUD) return s; if(s) ui={sel:s.sel||null,sec:s.sec,mpSel:s.mpSel||null,mpSec:s.mpSec}; } }catch(e){}
+  return {rps:JSON.parse(JSON.stringify(SEED)), insumos:[], sel:ui.sel||null, sec:ui.sec, mpSel:ui.mpSel||null, mpSec:ui.mpSec};
 }
 /* Nube (Firebase). Con la configuración vacía la app funciona como antes, solo en este navegador. */
 const FIREBASE_CONFIG = {
@@ -1047,13 +1183,13 @@ const FIREBASE_CONFIG = {
 };
 const CLOUD = !!(FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.projectId);
 // En modo nube los RP no se guardan en el navegador (computadoras compartidas)
-function persist(){ try{ localStorage.setItem(KEY,JSON.stringify(CLOUD?{sel:state.sel,sec:state.sec}:state)); }catch(e){} }
+function persist(){ try{ localStorage.setItem(KEY,JSON.stringify(CLOUD?{sel:state.sel,sec:state.sec,mpSel:state.mpSel,mpSec:state.mpSec}:state)); }catch(e){} }
 const cloud = { db:null, unsub:null, on:false, email:'', synced:new Map(), pushing:false, again:false, pushT:null, retryT:null, pendingRender:false };
 function save(){
   persist();
   if(cloud.on){ clearTimeout(cloud.pushT); cloud.pushT=setTimeout(pushChanges,300); }
 }
-state=load(); persist();
+state=load(); if(!Array.isArray(state.insumos)) state.insumos=[]; persist();
 const sortKey = r => (r.fechaCreacion||r.fecha||'0000');
 function sorted(){ return [...state.rps].sort((a,b)=>sortKey(b).localeCompare(sortKey(a)) || b.hoja.localeCompare(a.hoja)); }
 if(!state.sel || !state.rps.find(r=>r.id===state.sel)) state.sel = sorted()[0]?.id || null;
@@ -1071,9 +1207,18 @@ function normalize(r){
   for(const k of Object.keys(def)) if(r.presu[k]===undefined) r.presu[k]=def[k];
   if(!Array.isArray(r.presu.items)) r.presu.items=def.items;
   while(r.presu.items.length<2) r.presu.items.push({cant:null,desc:'',unit:null});
+  if(!Array.isArray(r.mp)) r.mp=[];   // materias primas aplicadas: [{ins, cant}] (cantidades del RP completo)
   return r;
 }
+function normIns(i){
+  if(!Array.isArray(i.precios)) i.precios=[];
+  if(!Array.isArray(i.movs)) i.movs=[];
+  for(const k of ['codigo','nombre']) if(typeof i[k]!=='string') i[k]=i[k]==null?'':String(i[k]);
+  for(const k of ['stockMin','stockMax']) if(i[k]===undefined) i[k]=null;
+  return i;
+}
 state.rps.forEach(normalize);
+state.insumos.forEach(normIns);
 if(!['costeo','presu'].includes(state.sec)) state.sec='costeo';
 
 /* ================== Ganancia bruta por RP (réplica de las fórmulas del Excel) ================== */
@@ -1263,7 +1408,7 @@ document.getElementById('btnGen').addEventListener('click',generarPresupuesto);
 /* ================== Secciones de la ficha ================== */
 function setSec(s){
   state.sec=s;
-  document.querySelectorAll('.sects button').forEach(b=>b.classList.toggle('on',b.dataset.sec===s));
+  document.querySelectorAll('#viewRP .sects button').forEach(b=>b.classList.toggle('on',b.dataset.sec===s));
   document.getElementById('secCosteo').classList.toggle('hide',s!=='costeo');
   document.getElementById('secPresu').classList.toggle('hide',s!=='presu');
   document.getElementById('btnClear').classList.toggle('hide',s!=='costeo');
@@ -1276,7 +1421,7 @@ document.addEventListener('click',e=>{ const b=e.target.closest('[data-goto]'); 
 // t: eur | ars | usd | pct | int | num ; calc: función que devuelve [texto, fuerte?]
 const FIELDS = [
   {sec:'Costos del RP'},
-  {k:'repuestos', l:'Repuestos (mat prima)', e:'EUR (oficial)', t:'eur'},
+  {i:'repuestos', calc:r=>[eur(r.repuestos),1], l:'Repuestos (mat prima)', e:'EUR (oficial) · por motor', go:'Materias primas →'},
   {k:'pctNacionalizacion', l:'Nacionalización repuesto', e:'% sobre repuestos', t:'pct'},
   {k:'impPais', l:'Imp Pais', e:'EUR (oficial)', t:'eur'},
   {k:'cantidadMotores', l:'cantidad motores', t:'int'},
@@ -1318,7 +1463,7 @@ function buildInputs(){
   for(const f of FIELDS){
     if(f.sec){ if(open) html+='</div>'; html+=`<div class="fs"><div class="fs-t">${f.sec}</div>`; open=true; continue; }
     const lab=`<label>${f.l}${ib(f.k||f.i)}${f.e?`<em>${f.e}</em>`:''}</label>`;
-    if(f.calc){ html+=`<div class="f">${lab}<div class="calc" data-calc="${FIELDS.indexOf(f)}"></div></div>`; continue; }
+    if(f.calc){ html+=`<div class="f">${lab}<div><div class="calc" data-calc="${FIELDS.indexOf(f)}"></div>${f.go?`<div class="over"><button class="linkbtn" type="button" data-mpgo>${f.go}</button></div>`:''}</div></div>`; continue; }
     const isP=f.t==='pct';
     html+=`<div class="f">${lab}<div><div class="in ${isP?'pct':''}"><span class="u">${unit[f.t]}</span><input data-k="${f.k}" data-t="${f.t}" inputmode="decimal" autocomplete="off" style="${!isP&&unit[f.t]?'padding-left:'+(unit[f.t].length*7+14)+'px':''}"></div>${f.copy?`<div class="over"><button class="btn sm ghost" type="button" data-copy="${f.k}">= a facturar</button></div>`:''}${f.k==='facturarManual'?'<div class="over hide" id="ovTag"><span class="tag">Ajuste manual</span></div>':''}</div></div>`;
   }
@@ -1341,7 +1486,7 @@ function fillInput(inp){
 /* ================== Fórmulas / origen de cada campo ================== */
 // t: m = manual, c = cálculo
 const INFO = {
-  repuestos:{t:'m',f:'Dato a completar.'},
+  repuestos:{t:'c',f:'Materias primas del RP (USD) ÷ cantidad motores × Oficial USD TC VENTA BNA ÷ Oficial EUR TC VENTA BNA',n:'Las materias primas se aplican en Materia prima → Materias primas por RP, con el precio vigente de cada insumo.'},
   pctNacionalizacion:{t:'m',f:'Dato a completar (%).',n:'Se usa en: Nacionalización repuesto = Repuestos (mat prima) × %.'},
   impPais:{t:'m',f:'Dato a completar.'},
   cantidadMotores:{t:'m',f:'Dato a completar.'},
@@ -1369,7 +1514,7 @@ const INFO = {
   fijoEUR:{t:'c',f:'Sueldo Fer Fijo (ARS) ÷ Oficial EUR TC VENTA BNA'},
   totalSueldo:{t:'c',f:'Fijo (EUR) + Variable - EUR por motor'},
   sueldoPorMotor:{t:'c',f:'Total sueldo ÷ Motores a arreglar por mes'},
-  r_repuestos:{t:'m',f:'Dato a completar: Repuestos (mat prima).'},
+  r_repuestos:{t:'c',f:'Materias primas del RP (USD) ÷ cantidad motores × Oficial USD TC VENTA BNA ÷ Oficial EUR TC VENTA BNA',n:'Se cargan en Materia prima → Materias primas por RP.'},
   r_nac:{t:'c',f:'Repuestos (mat prima) × % Nacionalización repuesto'},
   r_reg:{t:'c',f:'Precio Max (Saurer) EUR × % Regalías ÷ Conversión Blue a oficial'},
   r_imp:{t:'m',f:'Dato a completar: Imp Pais.'},
@@ -1433,7 +1578,7 @@ Object.assign(INFO, {
   p_pago:{t:'m',f:'Dato a completar.'},
   p_entrega:{t:'m',f:'Dato a completar.'},
 });
-INFO.cantidadMotores.n='Se usa en Costeo, en Ganancia bruta (Q RM) y en Presupuesto (Cantidad).';
+INFO.cantidadMotores.n='Se usa en Costeo, en Ganancia bruta (Q RM), en Presupuesto (Cantidad) y para repartir las materias primas del RP por motor.';
 INFO.eurOficial.n='En Ganancia bruta es "eur".';
 INFO.pctIIBB.n='Se usa en IIBB del Costeo y en IIBB de Ganancia bruta.';
 INFO.pctGanancias.n='Se usa en Imp Gcias del Costeo y en IIGG de Ganancia bruta.';
@@ -1517,6 +1662,8 @@ function renderList(){
 function renderAll(){
   const has=!!cur();
   document.getElementById('viewRP').classList.toggle('is-empty',!has);
+  document.getElementById('mpCount').textContent=state.insumos.length||'';
+  if(!document.getElementById('viewMP').classList.contains('hide')) renderMP();
   if(!has){ renderList(); if(!document.getElementById('viewGB').classList.contains('hide')) renderGBall(); return; }
   renderHead(); document.querySelectorAll('#inputsBody input[data-k]').forEach(fillInput); renderResults(); renderPresu(); renderList(); setSec(state.sec);
   if(!document.getElementById('viewGB').classList.contains('hide')) renderGBall();
@@ -1537,19 +1684,20 @@ document.getElementById('btnCSV').addEventListener('click',()=>{
 
 /* ================== Respaldo ================== */
 document.getElementById('btnBak').addEventListener('click',()=>{
-  download('HTEX - Respaldo Costeo UN 3 '+today()+'.json',JSON.stringify({app:'htex-costeo-un3',fecha:new Date().toISOString(),rps:state.rps},null,1),'application/json');
+  download('HTEX - Respaldo Costeo UN 3 '+today()+'.json',JSON.stringify({app:'htex-costeo-un3',fecha:new Date().toISOString(),rps:state.rps,insumos:state.insumos},null,1),'application/json');
 });
 document.getElementById('btnImp').addEventListener('click',()=>document.getElementById('fImp').click());
 document.getElementById('fImp').addEventListener('change',async e=>{
   const f=e.target.files[0]; e.target.value=''; if(!f) return;
-  let list;
-  try{ const j=JSON.parse(await f.text()); list=Array.isArray(j)?j:j.rps; if(!Array.isArray(list)||!list.every(r=>r&&r.id)) throw 0; }
+  let list, ins;
+  try{ const j=JSON.parse(await f.text()); list=Array.isArray(j)?j:j.rps; ins=Array.isArray(j)?[]:(j.insumos||[]); if(!Array.isArray(list)||!list.every(r=>r&&r.id)||!Array.isArray(ins)||!ins.every(i=>i&&i.id)) throw 0; }
   catch(err){ alert('El archivo no es un respaldo válido de esta aplicación.'); return; }
   const nuevos=list.filter(r=>!state.rps.find(x=>x.id===r.id)).length;
-  if(!confirm(`El respaldo tiene ${list.length} RP: ${nuevos} nuevos y ${list.length-nuevos} que ya existen y se reemplazan con la versión del respaldo. ¿Continuar?`)) return;
+  if(!confirm(`El respaldo tiene ${list.length} RP: ${nuevos} nuevos y ${list.length-nuevos} que ya existen y se reemplazan con la versión del respaldo.`+(ins.length?` También tiene ${ins.length} insumos, que se agregan o reemplazan de la misma forma.`:'')+' ¿Continuar?')) return;
   for(const r of list){ const d=normalize(JSON.parse(JSON.stringify(r))), i=state.rps.findIndex(x=>x.id===d.id); if(i>=0) state.rps[i]=d; else state.rps.push(d); }
+  for(const x of ins){ const d=normIns(JSON.parse(JSON.stringify(x))), i=state.insumos.findIndex(y=>y.id===d.id); if(i>=0) state.insumos[i]=d; else state.insumos.push(d); }
   if(!cur()) state.sel=sorted()[0]?.id||null;
-  save(); renderAll(); toast('Respaldo importado: '+list.length+' RP');
+  save(); renderAll(); toast('Respaldo importado: '+list.length+' RP'+(ins.length?' y '+ins.length+' insumos':''));
 });
 
 /* ================== Acciones ================== */
@@ -1557,7 +1705,7 @@ function uid(){ return 'r'+Date.now().toString(36)+Math.random().toString(36).sl
 function today(){ const d=new Date(); return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10); }
 document.getElementById('btnNew').addEventListener('click',()=>{
   const base=sorted()[0]; const keep=['pctNacionalizacion','precioMaxSaurer','pctRegalias','precioMotorNuevo','pctGananciaHTEX','usdOficial','usdBlue','eurOficial','pctRecargo','pctInflacionMora','alicuotaComisiones','pctIIBB','pctGanancias','motoresMes','variableEurPorMotor','sueldoFijoARS','sueldoVariableEUR'];
-  const n={id:uid(),hoja:'Nuevo RP',titulo:'RP # ',fecha:today(),fechaCreacion:today(),facturaAsociada:'',repuestos:0,impPais:0,interesesSufridos:0,facturarManual:null,precioVentaAnotar:null,cantidadMotores:0,cliente:'',presu:PRESU_DEF()};
+  const n={id:uid(),hoja:'Nuevo RP',titulo:'RP # ',fecha:today(),fechaCreacion:today(),facturaAsociada:'',mp:[],impPais:0,interesesSufridos:0,facturarManual:null,precioVentaAnotar:null,cantidadMotores:0,cliente:'',presu:PRESU_DEF()};
   const defs={pctNacionalizacion:.5,precioMaxSaurer:240,pctRegalias:.25,precioMotorNuevo:650,pctGananciaHTEX:.3,usdOficial:0,usdBlue:0,eurOficial:0,pctRecargo:.02,pctInflacionMora:0,alicuotaComisiones:.0347,pctIIBB:.03,pctGanancias:.3,motoresMes:0,variableEurPorMotor:12.5,sueldoFijoARS:0,sueldoVariableEUR:0};
   for(const k of keep) n[k]= base&&base[k]!==undefined&&base[k]!==null ? base[k] : defs[k];
   state.rps.push(n); state.sel=n.id; setSec('costeo'); save(); setTab('rp'); renderAll();
@@ -1565,8 +1713,8 @@ document.getElementById('btnNew').addEventListener('click',()=>{
   setTimeout(()=>document.getElementById('f_hoja').select(),50);
 });
 document.getElementById('btnDup').addEventListener('click',()=>{
-  const d=cur(); const n=JSON.parse(JSON.stringify(d)); n.id=uid(); n.hoja=d.hoja+' (copia)'; n.fechaCreacion=today(); delete n._excel; n.presu.nro=''; n.presu.fecha='';
-  state.rps.push(n); state.sel=n.id; save(); renderAll(); toast('RP duplicado');
+  const d=cur(); const n=JSON.parse(JSON.stringify(d)); n.id=uid(); n.hoja=d.hoja+' (copia)'; n.fechaCreacion=today(); delete n._excel; n.presu.nro=''; n.presu.fecha=''; n.mp=[];   // sin materias primas: si no, se descontaría el stock dos veces
+  state.rps.push(n); state.sel=n.id; save(); renderAll(); toast('RP duplicado (sin materias primas)');
 });
 document.getElementById('btnDel').addEventListener('click',()=>{
   const d=cur(); if(!confirm(`¿Eliminar "${d.hoja}"? Esta acción no se puede deshacer.`)) return;
@@ -1588,16 +1736,265 @@ for(const k of ['titulo','hoja','cliente','fecha','fechaCreacion','facturaAsocia
 }
 function download(name,content,type){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([content],{type})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500); }
 function setTab(t){
-  for(const [id,k] of [['tabRP','rp'],['tabGB','gb']]) document.getElementById(id).classList.toggle('on',t===k);
-  document.getElementById('viewRP').classList.toggle('hide',t!=='rp'); document.getElementById('viewGB').classList.toggle('hide',t!=='gb');
-  document.querySelector('main').classList.toggle('wide',t==='gb');
+  for(const [id,k] of [['tabRP','rp'],['tabGB','gb'],['tabMP','mp']]) document.getElementById(id).classList.toggle('on',t===k);
+  document.getElementById('viewRP').classList.toggle('hide',t!=='rp'); document.getElementById('viewGB').classList.toggle('hide',t!=='gb'); document.getElementById('viewMP').classList.toggle('hide',t!=='mp');
+  document.querySelector('main').classList.toggle('wide',t!=='rp');
   if(t==='gb') renderGBall();
+  if(t==='mp') renderMP();
 }
 document.getElementById('tabRP').addEventListener('click',()=>setTab('rp'));
 document.getElementById('tabGB').addEventListener('click',()=>setTab('gb'));
+document.getElementById('tabMP').addEventListener('click',()=>setTab('mp'));
 document.getElementById('yr').textContent=new Date().getFullYear();
 function setTopH(){ document.documentElement.style.setProperty('--toph', document.getElementById('topwrap').offsetHeight+'px'); }
 addEventListener('resize',setTopH); setTopH();
+
+/* ================== Materia prima ================== */
+// Cada insumo guarda su historial de precios (precios) y sus ingresos/ajustes de stock (movs).
+// El stock = ingresos y ajustes − cantidades aplicadas en los RP. El costo usa siempre el precio vigente.
+if(!['ins','rp','hist'].includes(state.mpSec)) state.mpSec='ins';
+const insName = i => i ? (i.nombre||'(sin nombre)') : '(insumo eliminado)';
+const insLabel = i => i ? insName(i)+(i.codigo?' · '+i.codigo:'') : '(insumo eliminado)';
+const sortedIns = () => [...state.insumos].sort((a,b)=>insName(a).localeCompare(insName(b),'es',{sensitivity:'base'}));
+const BADGE = {ok:'<span class="badge ok">OK</span>', low:'<span class="badge low">Bajo mínimo</span>', out:'<span class="badge out">Sin stock</span>'};
+const optQty = v => v===null||v===undefined||v==='' ? '—' : qty(+v);
+const byFechaTs = (a,b) => (a.fecha||'').localeCompare(b.fecha||'') || (a.ts||0)-(b.ts||0);
+function newId(p){ return p+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+function setMPSec(s){
+  state.mpSec=s;
+  document.querySelectorAll('#mpSects button').forEach(b=>b.classList.toggle('on',b.dataset.mps===s));
+  for(const [id,k] of [['mpIns','ins'],['mpRP','rp'],['mpHist','hist']]) document.getElementById(id).classList.toggle('hide',s!==k);
+}
+document.getElementById('mpSects').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; setMPSec(b.dataset.mps); persist(); renderMP(); });
+function renderMP(){
+  setMPSec(state.mpSec);
+  if(state.mpSec==='ins') renderMPIns(); else if(state.mpSec==='rp') renderMPRP(); else renderMPHist();
+}
+
+/* ----- 1. Insumos y stock ----- */
+function renderMPIns(){
+  let low=0, out=0, val=0;
+  const rows=sortedIns().map(i=>{ const st=stockDe(i), e=estadoStock(i,st), p=precioVig(i); if(e==='low') low++; if(e==='out') out++; val+=Math.max(st,0)*p; return {i,st,e,p,reg:precioVigReg(i)}; });
+  document.getElementById('mpK1').textContent=F0.format(rows.length);
+  document.getElementById('mpK2').textContent=F0.format(low);
+  document.getElementById('mpK3').textContent=F0.format(out);
+  document.getElementById('mpK4').textContent=usd(val);
+  const q=document.getElementById('mpQ').value.trim().toLowerCase(), onlyLow=document.getElementById('mpLow').checked;
+  const list=rows.filter(x=>(!q || (x.i.nombre+' '+x.i.codigo).toLowerCase().includes(q)) && (!onlyLow || x.e!=='ok'));
+  const head='<thead><tr><th class="l">Código</th><th class="l">Insumo</th><th>Precio vigente</th><th>Actualizado</th><th>Stock</th><th>Mín.</th><th>Máx.</th><th class="l">Estado</th><th>Valor stock</th></tr></thead>';
+  const body=list.map(x=>`<tr data-ins="${x.i.id}"><td class="l c">${esc(x.i.codigo||'—')}</td><td class="l w strong">${esc(insName(x.i))}</td><td>${usdP(x.p)}</td><td class="c">${x.reg?fdate(x.reg.fecha):'—'}</td><td class="strong ${x.st<0?'neg':''}">${qty(x.st)}</td><td class="c">${optQty(x.i.stockMin)}</td><td class="c">${optQty(x.i.stockMax)}</td><td class="l">${BADGE[x.e]}</td><td>${usd(Math.max(x.st,0)*x.p)}</td></tr>`).join('');
+  const empty=!state.insumos.length?'Todavía no hay insumos. Creá el primero con “＋ Nuevo insumo”.':'Ningún insumo coincide con el filtro.';
+  document.getElementById('mpTable').innerHTML=head+'<tbody>'+(body||`<tr><td colspan="9" class="mp-empty">${empty}</td></tr>`)+'</tbody>';
+}
+document.getElementById('mpQ').addEventListener('input',renderMPIns);
+document.getElementById('mpLow').addEventListener('change',renderMPIns);
+document.getElementById('mpTable').addEventListener('click',e=>{ const tr=e.target.closest('tr[data-ins]'); if(tr) openIns(tr.dataset.ins); });
+
+/* ----- 2. Materias primas por RP ----- */
+const mpCur = () => state.rps.find(r=>r.id===state.mpSel);
+function renderMPRP(){ renderMPRPList(); renderMPEd(); }
+function renderMPRPList(){
+  if(!mpCur()) state.mpSel=sorted()[0]?.id||null;
+  const idx=insIdx(), q=document.getElementById('mpRQ').value.trim().toLowerCase();
+  const list=sorted().filter(r=>!q || (r.hoja+' '+r.titulo+' '+(r.cliente||'')).toLowerCase().includes(q));
+  document.getElementById('mpRPs').innerHTML='<thead><tr><th class="l">RP</th><th class="l">fecha</th><th class="l">Cliente</th><th>Q RM</th><th>Ítems</th><th>Materia prima USD</th></tr></thead><tbody>'+
+    (list.map(r=>`<tr data-id="${r.id}" class="${r.id===state.mpSel?'on':''}"><td class="l strong">${esc(rpCode(r))}</td><td class="l">${mesAnio(r.fechaCreacion||r.fecha)}</td><td class="l">${esc(r.cliente||'—')}</td><td>${F0.format(+r.cantidadMotores||0)}</td><td>${r.mp.length||'—'}</td><td>${r.mp.length?usd(mpTotalUSD(r,idx)):'—'}</td></tr>`).join('')
+     || `<tr><td colspan="6" class="mp-empty">${state.rps.length?'Sin resultados':'No hay RP cargados.'}</td></tr>`)+'</tbody>';
+}
+function renderMPEd(){
+  const box=document.getElementById('mpEd'), d=mpCur();
+  if(!d){ box.innerHTML='<div class="mp-empty">Elegí un RP de la lista para aplicarle materias primas.</div>'; return; }
+  const idx=insIdx(), all=sortedIns();
+  const rows=d.mp.map((l,n)=>{
+    const i=idx.get(l.ins), used=new Set(d.mp.filter((x,m)=>m!==n).map(x=>x.ins));
+    const opts=all.filter(x=>!used.has(x.id)||x.id===l.ins).map(x=>`<option value="${x.id}" ${x.id===l.ins?'selected':''}>${esc(insLabel(x))}</option>`).join('')+(i?'':'<option selected value="">(insumo eliminado)</option>');
+    return `<tr data-n="${n}"><td class="l" style="min-width:200px"><select data-n="${n}" aria-label="Insumo">${opts}</select></td><td data-st></td><td><input data-n="${n}" inputmode="decimal" autocomplete="off" aria-label="Cantidad" value="${l.cant===null||l.cant===undefined?'':showNum(+l.cant,2)}" placeholder="0"></td><td class="c">${i?usdP(precioVig(i)):'—'}</td><td class="strong" data-sub></td><td><button class="xbtn" type="button" data-del="${n}" title="Quitar">✕</button></td></tr>`;
+  }).join('');
+  const free=all.some(x=>!d.mp.find(l=>l.ins===x.id));
+  box.innerHTML=`<div class="mp-head"><b>${esc(rpCode(d))}</b><span>${esc(d.hoja||'')}</span><span>${esc(d.cliente||'Sin cliente')}</span><span>${F0.format(+d.cantidadMotores||0)} motores</span></div>
+    <div class="sum-wrap"><table class="mpt ed"><thead><tr><th class="l">Insumo</th><th>Stock</th><th>Cantidad del RP</th><th>Precio unit.</th><th>Subtotal USD</th><th></th></tr></thead><tbody>${rows||'<tr><td colspan="6" class="mp-empty">Este RP todavía no tiene materias primas.</td></tr>'}</tbody></table></div>
+    <div class="mp-add"><button class="btn sm" type="button" id="mpAddLine" ${free?'':'disabled'}>＋ Agregar insumo</button>${state.insumos.length?'':' <span class="count" style="margin-left:8px">Primero cargá insumos en “Insumos y stock”.</span>'}</div>
+    <div class="mp-warn" id="mpWarn"></div><div class="mp-sum" id="mpSum"></div>`;
+  updateMPEd();
+}
+// Recalcula stock, subtotales y resumen sin rearmar la tabla (para no perder el foco al escribir)
+function updateMPEd(){
+  const d=mpCur(); if(!d) return; const idx=insIdx(), r=calcular(d), box=document.getElementById('mpEd');
+  box.querySelectorAll('tbody tr[data-n]').forEach(tr=>{ const l=d.mp[+tr.dataset.n], i=idx.get(l.ins), st=i?stockDe(i):0;
+    tr.querySelector('[data-st]').innerHTML=i?`<span class="${st<0?'neg':''}" title="Stock actual, ya descontado lo aplicado en todos los RP">${qty(st)}</span>`:'—';
+    tr.querySelector('[data-sub]').textContent=usd((+l.cant||0)*(i?precioVig(i):0)); });
+  const w=[];
+  if(!(+d.cantidadMotores)) w.push('La ficha no tiene cantidad de motores: no se puede calcular el costo por motor.');
+  if(!(+d.usdOficial) || !(+d.eurOficial)) w.push('Faltan los tipos de cambio Oficial USD u Oficial EUR en la ficha.');
+  if(d.mp.some(l=>{ const i=idx.get(l.ins); return i && stockDe(i)<0; })) w.push('Hay insumos con stock negativo: cargá el ingreso de mercadería en “Movimiento de stock”.');
+  document.getElementById('mpWarn').innerHTML=w.map(esc).join('<br>');
+  document.getElementById('mpSum').innerHTML=
+    `<div class="l">Total materias primas del RP</div><div class="v">${usd(r.mpUSD)}</div>`+
+    `<div class="l">÷ cantidad motores</div><div class="v">${F0.format(+d.cantidadMotores||0)}</div>`+
+    `<div class="l">Por motor (USD)</div><div class="v">${usd(r.mpUSDxRM)}</div>`+
+    `<div class="l">× Oficial USD ÷ Oficial EUR</div><div class="v">$ ${F2.format(+d.usdOficial||0)} ÷ $ ${F2.format(+d.eurOficial||0)}</div>`+
+    `<div class="l tot">Repuestos (mat prima) por motor · EUR (oficial)<br><em>Es el valor que usan el Costeo y la Ganancia bruta</em></div><div class="v tot">${eur(r.repuestos)}</div>`;
+}
+document.getElementById('mpRPs').addEventListener('click',e=>{ const tr=e.target.closest('tr[data-id]'); if(!tr) return; state.mpSel=tr.dataset.id; persist(); renderMPRP(); });
+document.getElementById('mpRQ').addEventListener('input',renderMPRPList);
+(function(){
+  const box=document.getElementById('mpEd');
+  box.addEventListener('change',e=>{ const s=e.target.closest('select[data-n]'); if(!s) return; mpCur().mp[+s.dataset.n].ins=s.value; save(); renderMPRP(); });
+  box.addEventListener('input',e=>{ const t=e.target.closest('input[data-n]'); if(!t) return; const n=parseNum(t.value); mpCur().mp[+t.dataset.n].cant = n===null?null:Math.max(0,n); touch(); updateMPEd(); });
+  box.addEventListener('focusout',e=>{ const t=e.target.closest('input[data-n]'); if(!t) return; const l=mpCur()?.mp[+t.dataset.n]; if(l) t.value=l.cant===null?'':showNum(+l.cant,2); renderMPRPList(); });
+  box.addEventListener('keydown',e=>{ if(e.key==='Enter' && e.target.matches('input[data-n]')) e.target.blur(); });
+  box.addEventListener('click',e=>{
+    const del=e.target.closest('[data-del]');
+    if(del){ mpCur().mp.splice(+del.dataset.del,1); save(); renderMPRP(); return; }
+    if(e.target.closest('#mpAddLine')){ const d=mpCur(), f=sortedIns().find(x=>!d.mp.find(l=>l.ins===x.id)); if(!f) return; d.mp.push({ins:f.id,cant:null}); save(); renderMPRP();
+      const ins=box.querySelectorAll('select[data-n]'); ins[ins.length-1]?.focus(); }
+  });
+})();
+// Desde la ficha del RP (Costeo) → aplicar materias primas a ese RP
+document.addEventListener('click',e=>{ if(!e.target.closest('[data-mpgo]')) return; state.mpSel=state.sel; state.mpSec='rp'; persist(); setTab('mp'); window.scrollTo({top:0}); });
+
+/* ----- 3. Historial de precios ----- */
+function renderMPHist(){
+  const sel=document.getElementById('mpHF'), keep=sel.value;
+  sel.innerHTML='<option value="">Todos los insumos</option>'+sortedIns().map(i=>`<option value="${i.id}">${esc(insLabel(i))}</option>`).join('');
+  sel.value=state.insumos.find(i=>i.id===keep)?keep:'';
+  const rows=[];
+  for(const i of state.insumos){ if(sel.value && i.id!==sel.value) continue;
+    const ps=[...i.precios].sort(byFechaTs); ps.forEach((p,n)=>rows.push({i,p,ant:n?ps[n-1].precio:null})); }
+  rows.sort((a,b)=>byFechaTs(b.p,a.p));
+  document.getElementById('mpHT').innerHTML='<thead><tr><th class="l">Fecha</th><th class="l">Código</th><th class="l">Insumo</th><th>Precio anterior</th><th>Precio nuevo</th><th>Variación</th><th class="l">Nota</th><th class="l">Cargado por</th></tr></thead><tbody>'+
+    (rows.map(({i,p,ant})=>{ const v=ant?(p.precio-ant)/ant:null; return `<tr><td class="l">${fdate(p.fecha)}</td><td class="l c">${esc(i.codigo||'—')}</td><td class="l w strong">${esc(insName(i))}</td><td class="c">${ant===null?'—':usdP(ant)}</td><td class="strong">${usdP(p.precio)}</td><td class="${v>0?'neg':''}">${v===null?'<span class="c">inicial</span>':(v>0?'+':'')+pct1(v)}</td><td class="l w c">${esc(p.nota||'')}</td><td class="l c">${esc(p.por||'')}</td></tr>`; }).join('')
+     || '<tr><td colspan="8" class="mp-empty">Todavía no hay precios cargados.</td></tr>')+'</tbody>';
+}
+document.getElementById('mpHF').addEventListener('change',renderMPHist);
+
+/* ----- Ventanas ----- */
+function modal(title, body, foot, wide){
+  closeModal();
+  const bg=document.createElement('div'); bg.className='mbg'; bg.id='mbg';
+  bg.innerHTML=`<div class="mdl ${wide?'wide':''}" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="mh"><b>${esc(title)}</b><button class="xbtn" type="button" data-close aria-label="Cerrar">✕</button></div><div class="mb">${body}<div class="err" id="mErr"></div></div><div class="mf">${foot}</div></div>`;
+  document.body.appendChild(bg);
+  bg.addEventListener('click',e=>{ if(e.target.closest('[data-close]')) closeModal(); });
+  bg.addEventListener('keydown',e=>{ if(e.key==='Enter' && e.target.matches('input')){ e.preventDefault(); bg.querySelector('[data-ok]')?.click(); } });
+  setTimeout(()=>bg.querySelector('input:not([type=date]),select')?.focus(),30);
+  return bg;
+}
+function closeModal(){ document.getElementById('mbg')?.remove(); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+const mVal = id => document.getElementById(id).value;
+const mErr = t => { document.getElementById('mErr').textContent=t; };
+const insOptions = sel => sortedIns().map(i=>`<option value="${i.id}" ${i.id===sel?'selected':''}>${esc(insLabel(i))}</option>`).join('');
+const FOOT = ok => `<button class="btn" type="button" data-close>Cancelar</button><button class="btn primary" type="button" data-ok>${ok}</button>`;
+function afterMP(msg){ closeModal(); save(); renderAll(); if(msg) toast(msg); }
+
+function openNewIns(){
+  const bg=modal('Nuevo insumo',
+    `<div class="fr"><label for="m_nom">Insumo</label><input id="m_nom" placeholder="Ej.: Z-Sensor"></div>
+     <div class="fr"><label for="m_cod">Código</label><input id="m_cod" placeholder="Ej.: 161-655.640"></div>
+     <div class="fr"><label for="m_pre">Precio USD</label><input id="m_pre" inputmode="decimal" placeholder="Precio unitario"></div>
+     <div class="fr"><label for="m_fec">Fecha del precio</label><input id="m_fec" type="date" value="${today()}"></div>
+     <h5>Stock</h5>
+     <div class="fr"><label for="m_sti">Stock inicial</label><input id="m_sti" inputmode="decimal" placeholder="0"></div>
+     <div class="fr"><label for="m_smin">Stock mínimo</label><input id="m_smin" inputmode="decimal" placeholder="Opcional"></div>
+     <div class="fr"><label for="m_smax">Stock máximo</label><input id="m_smax" inputmode="decimal" placeholder="Opcional"></div>`, FOOT('Crear insumo'));
+  bg.querySelector('[data-ok]').addEventListener('click',()=>{
+    const nombre=mVal('m_nom').trim(), codigo=mVal('m_cod').trim(), precio=parseNum(mVal('m_pre')), fecha=mVal('m_fec')||today(), sti=parseNum(mVal('m_sti'));
+    if(!nombre) return mErr('Falta el nombre del insumo.');
+    if(precio===null || precio<0) return mErr('Cargá un precio válido.');
+    if(codigo && state.insumos.some(i=>i.codigo.trim().toLowerCase()===codigo.toLowerCase())) return mErr('Ya existe un insumo con ese código.');
+    const ts=Date.now(), i=normIns({id:newId('i'),codigo,nombre,stockMin:parseNum(mVal('m_smin')),stockMax:parseNum(mVal('m_smax')),
+      precios:[{id:newId('p'),fecha,precio,nota:'Precio inicial',por:cloud.email,ts}],
+      movs:sti?[{id:newId('m'),fecha:today(),tipo:'inicial',cant:sti,nota:'Stock inicial',por:cloud.email,ts}]:[]});
+    state.insumos.push(i); afterMP('Insumo creado: '+nombre);
+  });
+}
+function openPrice(id){
+  if(!state.insumos.length) return toast('Primero creá un insumo');
+  id=id||sortedIns()[0].id;
+  const bg=modal('Cargar nuevo precio',
+    `<div class="fr"><label for="m_ins">Insumo</label><select id="m_ins">${insOptions(id)}</select></div>
+     <div class="fr"><label>Precio vigente</label><div class="calc" id="m_vig"></div></div>
+     <div class="fr"><label for="m_pre">Nuevo precio USD</label><input id="m_pre" inputmode="decimal" placeholder="Precio unitario"></div>
+     <div class="fr"><label for="m_fec">Fecha</label><input id="m_fec" type="date" value="${today()}"></div>
+     <div class="fr"><label for="m_not">Nota</label><input id="m_not" placeholder="Ej.: Proforma Saurer 15301656"></div>
+     <p class="count" style="text-transform:none;letter-spacing:0;margin:10px 0 0">El precio anterior queda en el historial. Los costos de los RP pasan a usar el precio nuevo.</p>`, FOOT('Guardar precio'));
+  const vig=()=>{ const i=state.insumos.find(x=>x.id===mVal('m_ins')), r=i&&precioVigReg(i); document.getElementById('m_vig').textContent=r?usdP(r.precio)+' · desde '+fdate(r.fecha):'—'; };
+  vig(); bg.querySelector('#m_ins').addEventListener('change',vig);
+  setTimeout(()=>document.getElementById('m_pre')?.focus(),40);
+  bg.querySelector('[data-ok]').addEventListener('click',()=>{
+    const i=state.insumos.find(x=>x.id===mVal('m_ins')), precio=parseNum(mVal('m_pre'));
+    if(!i) return mErr('Elegí un insumo.');
+    if(precio===null || precio<0) return mErr('Cargá un precio válido.');
+    const ant=precioVig(i);
+    i.precios.push({id:newId('p'),fecha:mVal('m_fec')||today(),precio,nota:mVal('m_not').trim(),por:cloud.email,ts:Date.now()});
+    afterMP(`${insName(i)}: ${usdP(ant)} → ${usdP(precioVig(i))}`);
+  });
+}
+function openMov(id){
+  if(!state.insumos.length) return toast('Primero creá un insumo');
+  id=id||sortedIns()[0].id;
+  const bg=modal('Movimiento de stock',
+    `<div class="fr"><label for="m_ins">Insumo</label><select id="m_ins">${insOptions(id)}</select></div>
+     <div class="fr"><label>Stock actual</label><div class="calc" id="m_sta"></div></div>
+     <div class="fr"><label for="m_tip">Tipo</label><select id="m_tip"><option value="ingreso">Ingreso de mercadería</option><option value="ajuste">Ajuste de inventario (+ / −)</option></select></div>
+     <div class="fr"><label for="m_can">Cantidad</label><input id="m_can" inputmode="decimal" placeholder="Unidades"></div>
+     <div class="fr"><label for="m_fec">Fecha</label><input id="m_fec" type="date" value="${today()}"></div>
+     <div class="fr"><label for="m_not">Nota</label><input id="m_not" placeholder="Ej.: Pedido IRP26-02"></div>
+     <p class="count" style="text-transform:none;letter-spacing:0;margin:10px 0 0">Lo que se usa en los RP se descuenta solo. El ajuste es para corregir diferencias de inventario: usá un número negativo para restar.</p>`, FOOT('Guardar movimiento'));
+  const sta=()=>{ const i=state.insumos.find(x=>x.id===mVal('m_ins')); document.getElementById('m_sta').textContent=i?qty(stockDe(i))+' unidades':'—'; };
+  sta(); bg.querySelector('#m_ins').addEventListener('change',sta);
+  setTimeout(()=>document.getElementById('m_can')?.focus(),40);
+  bg.querySelector('[data-ok]').addEventListener('click',()=>{
+    const i=state.insumos.find(x=>x.id===mVal('m_ins')), tipo=mVal('m_tip'), cant=parseNum(mVal('m_can'));
+    if(!i) return mErr('Elegí un insumo.');
+    if(!cant || (tipo==='ingreso' && cant<0)) return mErr(tipo==='ingreso'?'Cargá una cantidad mayor a cero.':'Cargá una cantidad distinta de cero.');
+    i.movs.push({id:newId('m'),fecha:mVal('m_fec')||today(),tipo,cant,nota:mVal('m_not').trim(),por:cloud.email,ts:Date.now()});
+    afterMP(`${insName(i)}: stock ${qty(stockDe(i))}`);
+  });
+}
+const MOV_TIPO={inicial:'Stock inicial',ingreso:'Ingreso',ajuste:'Ajuste'};
+function openIns(id){
+  const i=state.insumos.find(x=>x.id===id); if(!i) return;
+  const st=stockDe(i), reg=precioVigReg(i);
+  const ps=[...i.precios].sort((a,b)=>byFechaTs(b,a));
+  const usos=state.rps.flatMap(r=>r.mp.filter(l=>l.ins===id).map(l=>({fecha:r.fechaCreacion||r.fecha||'',tipo:'Usado en RP '+rpCode(r),cant:-(+l.cant||0),nota:r.cliente||'',rp:true})));
+  const movs=[...i.movs.map(m=>({...m,tipo:MOV_TIPO[m.tipo]||m.tipo})),...usos].sort((a,b)=>byFechaTs(b,a));
+  const bg=modal(insName(i),
+    `<div class="fr"><label for="m_nom">Insumo</label><input id="m_nom" value="${esc(i.nombre)}"></div>
+     <div class="fr"><label for="m_cod">Código</label><input id="m_cod" value="${esc(i.codigo)}"></div>
+     <div class="fr"><label for="m_smin">Stock mínimo</label><input id="m_smin" inputmode="decimal" value="${i.stockMin===null?'':showNum(+i.stockMin,2)}" placeholder="Opcional"></div>
+     <div class="fr"><label for="m_smax">Stock máximo</label><input id="m_smax" inputmode="decimal" value="${i.stockMax===null?'':showNum(+i.stockMax,2)}" placeholder="Opcional"></div>
+     <div class="fr"><label>Situación</label><div class="calc">Precio vigente ${reg?usdP(reg.precio):'—'} · Stock <b class="${st<0?'neg':''}">${qty(st)}</b> · ${BADGE[estadoStock(i,st)]}</div></div>
+     <h5>Historial de precios</h5>
+     <div class="sum-wrap"><table class="mpt"><thead><tr><th class="l">Fecha</th><th>Precio USD</th><th class="l">Nota</th><th class="l">Cargado por</th><th></th></tr></thead><tbody>${ps.map(p=>`<tr><td class="l">${fdate(p.fecha)}</td><td class="strong">${usdP(p.precio)}</td><td class="l w c">${esc(p.nota||'')}</td><td class="l c">${esc(p.por||'')}</td><td>${ps.length>1?`<button class="xbtn" type="button" data-delp="${p.id}" title="Borrar este precio (carga equivocada)">✕</button>`:''}</td></tr>`).join('')}</tbody></table></div>
+     <h5>Movimientos de stock</h5>
+     <div class="sum-wrap"><table class="mpt"><thead><tr><th class="l">Fecha</th><th class="l">Movimiento</th><th>Cantidad</th><th class="l">Nota</th><th></th></tr></thead><tbody>${movs.map(m=>`<tr><td class="l">${fdate(m.fecha)}</td><td class="l">${esc(m.tipo)}</td><td class="strong ${m.cant<0?'neg':''}">${m.cant>0?'+':''}${qty(m.cant)}</td><td class="l w c">${esc(m.nota||'')}</td><td>${m.rp?'':`<button class="xbtn" type="button" data-delm="${m.id}" title="Borrar este movimiento">✕</button>`}</td></tr>`).join('')||'<tr><td colspan="5" class="mp-empty">Sin movimientos.</td></tr>'}</tbody></table></div>`,
+    `<button class="btn danger left" type="button" data-delins>✕ Eliminar insumo</button><button class="btn" type="button" data-mov>⇅ Movimiento</button><button class="btn" type="button" data-price>＄ Nuevo precio</button><button class="btn primary" type="button" data-ok>Guardar</button>`, true);
+  bg.querySelector('[data-ok]').addEventListener('click',()=>{
+    const nombre=mVal('m_nom').trim(), codigo=mVal('m_cod').trim();
+    if(!nombre) return mErr('Falta el nombre del insumo.');
+    if(codigo && state.insumos.some(x=>x.id!==id && x.codigo.trim().toLowerCase()===codigo.toLowerCase())) return mErr('Ya existe otro insumo con ese código.');
+    Object.assign(i,{nombre,codigo,stockMin:parseNum(mVal('m_smin')),stockMax:parseNum(mVal('m_smax'))});
+    afterMP('Insumo guardado');
+  });
+  bg.querySelector('[data-price]').addEventListener('click',()=>openPrice(id));
+  bg.querySelector('[data-mov]').addEventListener('click',()=>openMov(id));
+  bg.querySelector('[data-delins]').addEventListener('click',()=>{
+    const n=state.rps.filter(r=>r.mp.some(l=>l.ins===id)).length;
+    if(n) return alert(`"${insName(i)}" está aplicado en ${n} RP. Sacalo de esos RP antes de eliminarlo.`);
+    if(!confirm(`¿Eliminar "${insName(i)}" con todo su historial de precios y movimientos? Esta acción no se puede deshacer.`)) return;
+    state.insumos=state.insumos.filter(x=>x.id!==id); afterMP('Insumo eliminado');
+  });
+  bg.addEventListener('click',e=>{
+    const p=e.target.closest('[data-delp]'), m=e.target.closest('[data-delm]');
+    if(p && confirm('¿Borrar este precio del historial? Usalo solo para corregir una carga equivocada.')){ i.precios=i.precios.filter(x=>x.id!==p.dataset.delp); save(); renderAll(); openIns(id); }
+    if(m && confirm('¿Borrar este movimiento de stock?')){ i.movs=i.movs.filter(x=>x.id!==m.dataset.delm); save(); renderAll(); openIns(id); }
+  });
+}
+document.getElementById('mpBtnNew').addEventListener('click',openNewIns);
+document.getElementById('mpBtnPrice').addEventListener('click',()=>openPrice());
+document.getElementById('mpBtnMov').addEventListener('click',()=>openMov());
 
 /* ================== Splash ================== */
 (function(){
@@ -1642,19 +2039,23 @@ function stable(v){
 }
 const SYNC_TXT={ok:'Sincronizado',saving:'Guardando…',error:'Sin conexión · reintentando',local:'Modo local'};
 function setSync(st){ const el=document.getElementById('syncSt'); el.dataset.st=st; el.lastElementChild.textContent=SYNC_TXT[st]; }
-function pending(){ return state.rps.some(r=>cloud.synced.get(r.id)!==stable(r)) || [...cloud.synced.keys()].some(id=>!state.rps.find(r=>r.id===id)); }
+// Colecciones: "rps" (un doc por RP) e "insumos" (un doc por insumo, con su historial de precios y movimientos de stock).
+// cloud.synced guarda la última versión subida de cada doc con clave "colección/id".
+const COLLS={rps:normalize, insumos:normIns};
+function localDocs(){ const m=new Map(); for(const c in COLLS) for(const x of state[c]) m.set(c+'/'+x.id,stable(x)); return m; }
+function pending(){ const now=localDocs(); return [...now].some(([k,j])=>cloud.synced.get(k)!==j) || [...cloud.synced.keys()].some(k=>!now.has(k)); }
 const rpsCol=()=>cloud.db.collection('rps');
 async function pushChanges(){
   if(!cloud.on) return;
   if(cloud.pushing){ cloud.again=true; return; }
-  const now=new Map(state.rps.map(r=>[r.id,stable(r)]));
-  const ups=[...now].filter(([id,j])=>cloud.synced.get(id)!==j);
-  const dels=[...cloud.synced.keys()].filter(id=>!now.has(id));
+  const now=localDocs();
+  const ups=[...now].filter(([k,j])=>cloud.synced.get(k)!==j);
+  const dels=[...cloud.synced.keys()].filter(k=>!now.has(k));
   if(!ups.length && !dels.length){ setSync('ok'); return; }
   cloud.pushing=true; setSync('saving');
   try{
-    const ops=[...ups.map(([id,j])=>b=>b.set(rpsCol().doc(id),{data:JSON.parse(j),updatedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedBy:cloud.email})),
-               ...dels.map(id=>b=>b.delete(rpsCol().doc(id)))];
+    const ops=[...ups.map(([k,j])=>b=>b.set(cloud.db.doc(k),{data:JSON.parse(j),updatedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedBy:cloud.email})),
+               ...dels.map(k=>b=>b.delete(cloud.db.doc(k)))];
     for(let i=0;i<ops.length;i+=400){ const b=cloud.db.batch(); ops.slice(i,i+400).forEach(f=>f(b)); await b.commit(); }
     ups.forEach(([id,j])=>cloud.synced.set(id,j)); dels.forEach(id=>cloud.synced.delete(id));
     setSync('ok');
@@ -1662,21 +2063,22 @@ async function pushChanges(){
   finally{ cloud.pushing=false; if(cloud.again){ cloud.again=false; pushChanges(); } }
 }
 // Cambio que llega de otra persona
-function applyRemote(row){
-  const j=stable(row.data), loc=state.rps.find(r=>r.id===row.id);
-  if(cloud.synced.get(row.id)===j) return false;
-  if(loc && cloud.synced.has(row.id) && stable(loc)!==cloud.synced.get(row.id)) return false; // hay cambios propios sin subir
-  cloud.synced.set(row.id,j);
-  const d=normalize(JSON.parse(j));
-  if(loc){ for(const k of Object.keys(loc)) delete loc[k]; Object.assign(loc,d); } else state.rps.push(d);
+function applyRemote(c,row){
+  const key=c+'/'+row.id, j=stable(row.data), loc=state[c].find(r=>r.id===row.id);
+  if(cloud.synced.get(key)===j) return false;
+  if(loc && cloud.synced.has(key) && stable(loc)!==cloud.synced.get(key)) return false; // hay cambios propios sin subir
+  cloud.synced.set(key,j);
+  const d=COLLS[c](JSON.parse(j));
+  if(loc){ for(const k of Object.keys(loc)) delete loc[k]; Object.assign(loc,d); } else state[c].push(d);
   return true;
 }
-function removeRemote(id){
-  if(!cloud.synced.has(id)) return false;
-  cloud.synced.delete(id); state.rps=state.rps.filter(r=>r.id!==id);
+function removeRemote(c,id){
+  const key=c+'/'+id;
+  if(!cloud.synced.has(key)) return false;
+  cloud.synced.delete(key); state[c]=state[c].filter(r=>r.id!==id);
   return true;
 }
-function editing(){ const a=document.activeElement; return !!a && a.matches('input,textarea,select') && a.id!=='q'; }
+function editing(){ const a=document.activeElement; return !!a && a.matches('input,textarea,select') && !['q','mpQ','mpRQ'].includes(a.id) && !a.closest('.mbg'); }
 function remoteRender(){
   persist();
   if(editing()){ cloud.pendingRender=true; return; }   // no pisar lo que se está escribiendo
@@ -1686,24 +2088,25 @@ function remoteRender(){
 }
 document.addEventListener('focusout',()=>setTimeout(()=>{ if(cloud.pendingRender && !editing()) remoteRender(); },0));
 function listen(){
-  if(cloud.unsub) cloud.unsub();
-  cloud.unsub=rpsCol().onSnapshot(snap=>{
+  (cloud.unsub||[]).forEach(u=>u());
+  cloud.unsub=Object.keys(COLLS).map(col=>cloud.db.collection(col).onSnapshot(snap=>{
     let changed=false;
     for(const c of snap.docChanges()){
       if(c.doc.metadata.hasPendingWrites) continue;            // eco de lo que guardé yo
-      changed = (c.type==='removed' ? removeRemote(c.doc.id) : applyRemote({id:c.doc.id,data:c.doc.data().data})) || changed;
+      changed = (c.type==='removed' ? removeRemote(col,c.doc.id) : applyRemote(col,{id:c.doc.id,data:c.doc.data().data})) || changed;
     }
     if(changed) remoteRender();
     if(!cloud.pushing && document.getElementById('syncSt').dataset.st==='error') pushChanges();
-  },err=>{ console.error(err); setSync('error'); setTimeout(listen,5000); });
+  },err=>{ console.error(err); setSync('error'); setTimeout(listen,5000); }));
 }
 function gate(st,extra){ const g=document.getElementById('gate'); if(!g) return; g.dataset.st=st; if(st==='denied') document.getElementById('gWho').textContent=extra||''; if(st==='error') document.getElementById('gErr').textContent=extra||''; }
 async function enter(user){
   cloud.email=user.email||''; gate('wait');
-  let snap;
-  try{ snap=await rpsCol().get(); }
+  let snap, snapIns;
+  try{ [snap,snapIns]=await Promise.all([rpsCol().get(), cloud.db.collection('insumos').get()]); }
   catch(e){ if(e.code==='permission-denied'){ gate('denied',cloud.email); return; } gate('error',e.message); return; }
-  if(!snap.empty){ state.rps=snap.docs.map(d=>{ const data=d.data().data; cloud.synced.set(d.id,stable(data)); return normalize(JSON.parse(JSON.stringify(data))); }); }
+  if(!snap.empty){ state.rps=snap.docs.map(d=>{ const data=d.data().data; cloud.synced.set('rps/'+d.id,stable(data)); return normalize(JSON.parse(JSON.stringify(data))); }); }
+  state.insumos=snapIns.docs.map(d=>{ const data=d.data().data; cloud.synced.set('insumos/'+d.id,stable(data)); return normIns(JSON.parse(JSON.stringify(data))); });
   // Base vacía (primera vez): se suben los RP que hay en este navegador
   if(!state.sel || !cur()) state.sel=sorted()[0]?.id || null;
   cloud.on=true; save(); renderAll(); listen();
