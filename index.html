@@ -109,15 +109,16 @@ aside.list .hd .row{display:flex;gap:8px}
 .rp-head>.meta{flex-basis:100%}
 
 .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:18px}
-.kpi{background:var(--card);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);border-top:3px solid var(--teal)}
+.kpi{background:var(--card);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);border-top:3px solid var(--teal);min-width:0}
 .kpi.dark{background:var(--navy);color:#fff;border-top-color:var(--teal-2)}
 .kpi .l{font-size:11.5px;color:var(--ink-3);line-height:1.3;min-height:30px}
+#secCosteo .kpi .l{min-height:45px}
 .kpi.dark .l{color:#A9B6BF}
 .kpi .v{font-size:22px;font-weight:600;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kpi .s{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.kpi .s{font-size:11.5px;color:var(--ink-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kpi.dark .s{color:#A9B6BF}
 
-.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:18px;align-items:start}
+.grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(380px,1fr);gap:18px;align-items:start}
 .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .card+.card{margin-top:18px}
 .card h3{margin:0;padding:14px 18px;font-size:13px;font-weight:600;letter-spacing:.02em;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
@@ -125,7 +126,7 @@ aside.list .hd .row{display:flex;gap:8px}
 .card h3 .hint{margin-left:auto;font-weight:400;color:var(--ink-3);font-size:11.5px}
 
 table.st{width:100%;border-collapse:collapse}
-table.st th{font-size:10.5px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;text-align:right;padding:10px 14px;background:#FAFAFA;border-bottom:1px solid var(--line)}
+table.st th{font-size:10.5px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;text-align:right;padding:10px 14px;background:#FAFAFA;border-bottom:1px solid var(--line);white-space:nowrap}
 table.st th:first-child{text-align:left}
 table.st td{padding:8px 14px;border-bottom:1px solid #F0F1F2;text-align:right;white-space:nowrap}
 table.st td:first-child{text-align:left;white-space:normal;color:var(--ink-2)}
@@ -152,9 +153,10 @@ table.st .ital td:first-child{font-style:italic}
 .fs{padding:10px 18px 14px;border-bottom:1px solid var(--line)}
 .fs:last-child{border-bottom:0}
 .fs .fs-t{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:6px 0 6px}
-.f{display:grid;grid-template-columns:1fr 140px;align-items:center;gap:10px;padding:4px 0}
+.f{display:grid;grid-template-columns:minmax(0,1fr) 130px;align-items:center;gap:12px;padding:4px 0}
 .f label{font-size:12.5px;color:var(--ink-2);line-height:1.25}
-.f label em{display:block;font-style:normal;font-size:10.5px;color:var(--ink-3)}
+.f label em{display:block;font-style:normal;font-size:10.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.f label .linkbtn{display:block;font-size:11px;margin-top:2px}
 .in{position:relative;display:flex;align-items:center}
 .in input{width:100%;text-align:right;border:1px solid var(--input-line);background:var(--input);border-radius:7px;padding:6px 9px;outline:none;font-variant-numeric:tabular-nums;font-size:13px}
 .in input:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(83,166,154,.15)}
@@ -627,17 +629,17 @@ table.mpt.ed select:focus,table.mpt.ed input:focus{border-color:var(--teal);back
 
       <!-- ===== Vista Materia prima ===== -->
       <div id="viewMP" class="hide">
-        <div class="rp-head">
+        <div class="rp-head" style="align-items:center">
+          <div class="sects" id="mpSects" role="tablist" style="margin:0">
+            <button type="button" data-mps="ins" class="on"><span class="n">1</span>Insumos y stock</button>
+            <button type="button" data-mps="rp"><span class="n">2</span>Materias primas por RP</button>
+            <button type="button" data-mps="hist"><span class="n">3</span>Historial de precios</button>
+          </div>
           <div class="actions" style="margin-left:auto">
             <button class="btn" id="mpBtnNew" type="button">＋ Nuevo insumo</button>
             <button class="btn" id="mpBtnMov" type="button">⇅ Movimiento de stock</button>
             <button class="btn primary" id="mpBtnPrice" type="button">＄ Cargar nuevo precio</button>
           </div>
-        </div>
-        <div class="sects" id="mpSects" role="tablist">
-          <button type="button" data-mps="ins" class="on"><span class="n">1</span>Insumos y stock</button>
-          <button type="button" data-mps="rp"><span class="n">2</span>Materias primas por RP</button>
-          <button type="button" data-mps="hist"><span class="n">3</span>Historial de precios</button>
         </div>
 
         <div id="mpIns">
@@ -1157,13 +1159,13 @@ function estadoStock(i, st){ st = st===undefined ? stockDe(i) : st; if(st<=0) re
 /* ================== Formato ================== */
 const nf = (d)=>new Intl.NumberFormat('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const F2=nf(2), F0=nf(0);
-const eur = x => (x<0?'−':'')+'€ '+F2.format(Math.abs(x));
-const ars = x => (x<0?'−':'')+'$ '+F0.format(Math.abs(x));
-const usd = x => (x<0?'−':'')+'US$ '+F2.format(Math.abs(x));
-const usdP = x => (x<0?'−':'')+'US$ '+new Intl.NumberFormat('es-AR',{minimumFractionDigits:2,maximumFractionDigits:4}).format(Math.abs(x)); // precios unitarios chicos
+const eur = x => (x<0?'−':'')+'€\u00a0'+F2.format(Math.abs(x));
+const ars = x => (x<0?'−':'')+'$\u00a0'+F0.format(Math.abs(x));
+const usd = x => (x<0?'−':'')+'US$\u00a0'+F2.format(Math.abs(x));
+const usdP = x => (x<0?'−':'')+'US$\u00a0'+new Intl.NumberFormat('es-AR',{minimumFractionDigits:2,maximumFractionDigits:4}).format(Math.abs(x)); // precios unitarios chicos
 const qty = x => new Intl.NumberFormat('es-AR',{maximumFractionDigits:2}).format(x);
 const plain = x => (x<0?'−':'')+F2.format(Math.abs(x));
-const pct = x => nf(2).format(x*100).replace(/,00$/,'')+' %';
+const pct = x => nf(2).format(x*100).replace(/,00$/,'')+'\u00a0%';
 const fdate = s => { if(!s) return '—'; const [y,m,d]=s.split('-'); return `${d}/${m}/${y}`; };
 function parseNum(s){
   if(s===null||s===undefined) return null;
@@ -1254,7 +1256,7 @@ function calcGB(d, r){
   g.margenPost = g.costo ? g.margenRM / g.costo : 0;          // margen post imp
   return g;
 }
-const pct1 = x => nf(1).format(x*100)+' %';
+const pct1 = x => nf(1).format(x*100)+'\u00a0%';
 const GBCOLS=[
   ['RP','gb_rp'],['fecha','gb_fecha'],['Cliente','gb_cliente'],['Q RM','gb_q'],['Costo operativo','gb_costo'],['precio x RM','gb_precio'],['Ingreso. UN x RM','gb_ing'],['Ingreso x RP','gb_ingrp'],
   ['IIBB','gb_iibb'],['IIGG','gb_iigg'],['Gastos x mora','gb_mora'],['Margen $ x RM','gb_mrm'],['Margen $ x RP','gb_mrp'],['eur','gb_eur'],['Margen operativo','gb_mop'],['margen post imp','gb_mpi']];
@@ -1472,8 +1474,8 @@ function buildInputs(){
   const box=document.getElementById('inputsBody'); let html='', open=false;
   for(const f of FIELDS){
     if(f.sec){ if(open) html+='</div>'; html+=`<div class="fs"><div class="fs-t">${f.sec}</div>`; open=true; continue; }
-    const lab=`<label>${f.l}${ib(f.k||f.i)}${f.e?`<em>${f.e}</em>`:''}</label>`;
-    if(f.calc){ html+=`<div class="f">${lab}<div><div class="calc" data-calc="${FIELDS.indexOf(f)}"></div>${f.go?`<div class="over"><button class="linkbtn" type="button" data-mpgo>${f.go}</button></div>`:''}</div></div>`; continue; }
+    const lab=`<label>${keepIb(f.l,ib(f.k||f.i))}${f.e?`<em title="${esc(f.e)}">${f.e}</em>`:''}${f.go?`<button class="linkbtn" type="button" data-mpgo>${f.go}</button>`:''}</label>`;
+    if(f.calc){ html+=`<div class="f">${lab}<div class="calc" data-calc="${FIELDS.indexOf(f)}"></div></div>`; continue; }
     const isP=f.t==='pct';
     html+=`<div class="f">${lab}<div><div class="in ${isP?'pct':''}"><span class="u">${unit[f.t]}</span><input data-k="${f.k}" data-t="${f.t}" inputmode="decimal" autocomplete="off" style="${!isP&&unit[f.t]?'padding-left:'+(unit[f.t].length*7+14)+'px':''}"></div>${f.copy?`<div class="over"><button class="btn sm ghost" type="button" data-copy="${f.k}">= a facturar</button></div>`:''}${f.k==='facturarManual'?'<div class="over hide" id="ovTag"><span class="tag">Ajuste manual</span></div>':''}</div></div>`;
   }
@@ -1596,11 +1598,13 @@ INFO.pctInflacionMora.n='En el Costeo es informativo. En Ganancia bruta se usa e
 INFO.precioVentaAnotar.n='El botón “= a facturar” copia el precio a facturar. En Ganancia bruta es el precio x RM.';
 INFO.facturarManual.n='Se puede sobrescribir a mano; vacío = valor calculado. En Presupuesto es el Valor Unit. $.';
 
+// Pega la (i) a la última palabra para que nunca quede sola en otro renglón
+const keepIb = (t,b) => { if(!b) return t; const i=t.lastIndexOf(' '); return i<0 ? `<span style="white-space:nowrap">${t}${b}</span>` : t.slice(0,i+1)+`<span style="white-space:nowrap">${t.slice(i+1)}${b}</span>`; };
 const ib = k => INFO[k] ? '<button class="ib" type="button" data-info="'+k+'" aria-label="Ver fórmula">i</button>' : '';
 
 /* ================== Render ================== */
 function row(label, cols, cls='', k){
-  return `<tr class="${cls}"><td>${label}${ib(k)}</td>${cols.map(c=>{ if(c===null||c===undefined||c==='') return '<td class="c"></td>'; const neg=typeof c==='number'&&c<0; return `<td class="num ${neg?'neg':''}">${typeof c==='number'?eur(c):c}</td>`; }).join('')}</tr>`;
+  return `<tr class="${cls}"><td>${keepIb(label,ib(k))}</td>${cols.map(c=>{ if(c===null||c===undefined||c==='') return '<td class="c"></td>'; const neg=typeof c==='number'&&c<0; return `<td class="num ${neg?'neg':''}">${typeof c==='number'?eur(c):c}</td>`; }).join('')}</tr>`;
 }
 function renderResults(){
   const d=cur(); if(!d) return; const r=calcular(d);
@@ -1632,7 +1636,7 @@ function renderResults(){
     one('Margen Neto',r.margenNeto,'total','r_mn') +
     '<tr class="gap"><td colspan="2"></td></tr>' +
     one('Precio de Venta Post recargo financiero EUR',r.precioPostRecargoEUR,'hl','r_post') +
-    `<tr class="hl"><td>Precio de Venta Post recargo financiero ARS - a facturar${ib('r_fact')}</td><td class="num">${ars(r.facturar)}</td></tr>` +
+    `<tr class="hl"><td>${keepIb('Precio de Venta Post recargo financiero ARS - a facturar',ib('r_fact'))}</td><td class="num">${ars(r.facturar)}</td></tr>` +
     (r.facturarManual!==null?`<tr><td class="c" style="font-size:12px">Calculado (EUR × Oficial EUR TC VENTA BNA)</td><td class="num c">${ars(r.facturarCalculado)}</td></tr>`:'');
   // P&L
   const noPA=!r.hayPrecioAnotar;
@@ -1646,9 +1650,9 @@ function renderResults(){
   document.getElementById('k_pv').textContent=eur(r.precioVenta);
   document.getElementById('k_pv_s').textContent='Post recargo: '+eur(r.precioPostRecargoEUR);
   document.getElementById('k_fact').textContent=ars(r.facturar);
-  document.getElementById('k_fact_s').textContent=r.facturarManual!==null?'Ajuste manual · calc. '+ars(r.facturarCalculado):'Oficial EUR: $ '+F2.format(+d.eurOficial||0);
+  document.getElementById('k_fact_s').textContent=r.facturarManual!==null?'Calculado: '+ars(r.facturarCalculado):'Oficial EUR: $\u00a0'+F2.format(+d.eurOficial||0);
   document.getElementById('k_mn').textContent=eur(r.margenNeto);
-  document.getElementById('k_mn_s').textContent=r.precioVenta?('Sobre Precio de Venta: '+pct(r.margenNeto/r.precioVenta)):'';
+  document.getElementById('k_mn_s').textContent=r.precioVenta?(pct(r.margenNeto/r.precioVenta)+' s/ Precio de Venta'):'';
   document.getElementById('k_pl').textContent=usd(r.costoPL);
   document.getElementById('k_grp').textContent=noPA?'—':usd(r.gananciaRP);
   document.getElementById('k_grp_s').textContent=F0.format(+d.cantidadMotores||0)+' motores · Blue $ '+F2.format(+d.usdBlue||0);
