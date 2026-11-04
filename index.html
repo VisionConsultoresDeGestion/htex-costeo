@@ -2149,10 +2149,10 @@ for(const [boxId,getD] of Object.entries(RM_BOXES)){
     const delrm=e.target.closest('[data-delrm]');
     if(delrm){ const n=+delrm.dataset.delrm, m=d.rms[n];
       if(m.mp.length && !confirm(`¿Quitar ${rmNombre(m,n)} con sus ${m.mp.length} insumos? Vuelven al stock.`)) return;
-      d.rms.splice(n,1); d.cantidadMotores=d.rms.length; rmOpen[d.id]=Math.max(0,Math.min(rmOpen[d.id]??0,d.rms.length-1)); rearm(d); renderAll(); return; }
-    if(e.target.closest('input')) return;   // escribir el Motor N no abre ni cierra
+      d.rms.splice(n,1); d.cantidadMotores=d.rms.length; rmOpen[d.id]=Math.min(rmOpen[d.id]??0,d.rms.length-1); rearm(d); renderAll(); return; }
+    if(e.target.closest('input,label')) return;   // escribir el Motor N no abre ni cierra
     const tog=e.target.closest('[data-tog]');
-    if(tog){ rmOpen[d.id]=+tog.dataset.tog; renderRMEd(boxId,d); }
+    if(tog){ const n=+tog.dataset.tog, abierto=Math.min(rmOpen[d.id]??0,d.rms.length-1); rmOpen[d.id]=n===abierto?-1:n; renderRMEd(boxId,d); }   // -1 = todos cerrados
   });
 }
 
