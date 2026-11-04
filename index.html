@@ -561,9 +561,6 @@ table.gbt tfoot .ib{border-color:rgba(255,255,255,.35);color:#C9D2D8}
 .rm-h input:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(83,166,154,.15)}
 .rm-h .sum{margin-left:auto;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .rm-b .mp-add{border-bottom:0}
-.rm-x{background:#FFF8E8}
-.rm-x>.rm-h{cursor:default;background:#FFF1D6;color:#8A5A00;font-size:12.5px}
-.rm-x>.rm-h b{color:#8A5A00}
 .rm-add{padding:12px 18px;border-bottom:1px solid var(--line)}
 table.mpt.ed select.mv{min-width:110px}
 .ph-card{margin-bottom:18px}
@@ -2079,7 +2076,7 @@ function renderRMEd(boxId,d){
   const open=Math.min(rmOpen[d.id]??0, d.rms.length-1);
   const motores=d.rms.map((m,n)=>{ const on=n===open;
     return `<div class="rm ${on?'open':''}" data-rm="${n}"><div class="rm-h" data-tog="${n}"><span class="car"></span><b>RM ${n+1}</b><label>Motor N<input data-motor="${n}" value="${esc(m.motor)}" placeholder="Ej.: RM3900042" autocomplete="off"></label><span class="sum" data-rmsum="${n}"></span><button class="xbtn" type="button" data-delrm="${n}" title="Quitar este motor">✕</button></div>${on?`<div class="rm-b"><div class="sum-wrap"><table class="mpt ed">${RM_THEAD()}<tbody>${rmFilas(d,String(n),all,idx)||'<tr><td colspan="6" class="mp-empty">Este motor todavía no tiene insumos.</td></tr>'}</tbody></table></div><div class="mp-add"><button class="btn sm" type="button" data-add="${n}" ${all.some(x=>!m.mp.find(l=>l.ins===x.id))?'':'disabled'}>Agregar insumo</button>${state.insumos.length?'':' <span class="count" style="margin-left:8px">Primero cargá insumos en “Insumos y stock”.</span>'}</div></div>`:''}</div>`; }).join('');
-  const sinAsignar=d.mp.length?`<div class="rm rm-x"><div class="rm-h"><b>Sin asignar a un motor</b><span>Se cargaron antes de separar por motor. Suman al costo y al stock: pasalos al motor que corresponda.</span></div><div class="sum-wrap"><table class="mpt ed">${RM_THEAD(1)}<tbody>${rmFilas(d,'x',all,idx)}</tbody></table></div></div>`:'';
+  const sinAsignar=d.mp.length?`<div class="rm rm-x"><div class="sum-wrap"><table class="mpt ed">${RM_THEAD(1)}<tbody>${rmFilas(d,'x',all,idx)}</tbody></table></div></div>`:'';
   box.innerHTML=`<div class="mp-head rm-head"><b>${esc(rpCode(d))}</b><span>${esc(d.hoja||'')}</span><span>${esc(d.cliente||'Sin cliente')}</span><span>${F0.format(+d.cantidadMotores||0)} motores</span>${fin?`<span class="badge ok">Finalizado ${fdate(d.fechaFin)}</span>`:''}${boxId==='mpEd'?`<button class="btn sm ${fin?'':'primary'}" type="button" data-fin>${fin?'Reabrir RP':'RP terminado'}</button>`:''}</div>
     <div class="mp-warn" data-warn></div>${sinAsignar}${motores||'<div class="mp-empty">Este RP todavía no tiene motores. Agregá uno, o cargá la cantidad motores en Costeo.</div>'}
     <div class="rm-add"><button class="btn sm" type="button" data-addrm>Agregar motor</button></div><div class="mp-sum" data-sumrp></div>`;
